@@ -1,4 +1,4 @@
-# Some of the most effective techniques systematically creating smaller, efficient models from LLLMs while preserving performance, sysnthesized from the latest research and practical implementations are:
+## Some of the most effective techniques systematically creating smaller, efficient models from LLLMs while preserving performance, sysnthesized from the latest research and practical implementations are:
 
 1. Pruning: Removing Redundant components:
     * Structured Pruning: Targets entire neurons, or blocks to maintain hardware-friendly architectures. For example, GLU(gated Linear Pruning)-aware pruning in models like LLaMa 3.2 removes neurons while preserving paired layers t avoid incoherent outputs.
@@ -23,3 +23,14 @@
 
 
 ##  Step by step workflow to systematicaly create a smaller, high-performance model from an LLM, combining the most effective techniques in an optimized sequence.
+### Step 1: Structured Pruning (Remove Redundancy First)
+Goal: Eliminate unnecesary parameters while preserving the model's core architecture.
+    * Target MLP layers (e.g, gate_proj, up_proj, down_proj in LLAMA) since they account for > 50% of parameters.
+    * Use GLU-aware pruning to remove entire neurons while maintaining paired layers to avoid output incoherence.
+    * Tools: Implement SparseGPT for one-shot, layer-wise pruning wihtout retraining.
+    * Outcome: Reduce model size by 20-40% with minimal loss.
+
+### Step 2: Post-Training Quantization (PTQ)
+Goal: Reduce numerical precision to shrink the model and accelerate inference.
+    * Apply GPTQ or AWQ for 4-bit quantization, which supress activation outliers and maintains performance.
+    * 
