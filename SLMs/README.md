@@ -28,13 +28,12 @@ Synthesized from the latest research and practical implementations:
 
 Combining the most effective techniques in an optimized sequence:
 
-### **Step 1: Structured Pruning (Remove Redundancy First)**  
+### **Step 1: Pruning (Remove Redundancy First)**  
 **Goal:** Eliminate unnecessary parameters while preserving the model's core architecture.
 
-- 🔸 **Target MLP layers** (e.g., `gate_proj`, `up_proj`, `down_proj` in LLaMa) since they account for over 50% of parameters.
-- 🔸 Use **GLU-aware pruning** to remove entire neurons while maintaining paired layers to avoid output incoherence.
-- 🔸 **Tools:** Implement **SparseGPT** for one-shot, layer-wise pruning without retraining.
-- 🔸 **Outcome:** Reduce model size by **20–40%** with minimal loss.
+- 🔸 **Structured Pruning:** First, remove redundant neurons or channels (e.g., using GLU-aware pruning on MLP layers such as `gate_proj`, `up_proj`, and `down_proj` in LLaMa) since these account for over 50% of parameters. This step prunes entire blocks and is hardware-friendly.
+- 🔸 **Unstructured Pruning (Optional):** After structured pruning, you may apply unstructured pruning—removing individual low-magnitude weights—to further reduce the parameter count. Techniques like SparseGPT can be used here.
+- 🔸 **Outcome:** Overall, these combined pruning methods can reduce model size by **20–40%** (or more when combined), with minimal performance loss.
 
 ---
 
@@ -82,15 +81,18 @@ Combining the most effective techniques in an optimized sequence:
 
 ## Tools & Frameworks 🛠
 
-- **Pruning:** SparseGPT, NNI  
-- **Quantization:** GPTQ, AWQ, BitsAndBytes  
-- **Distillation:** Hugging Face Transformers, TensorFlow Model Optimization  
-- **Deployment:** LLaMA.cpp, TensorRT-LLM, Ollama
+<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: #f9f9f9;">
+**Pruning:** SparseGPT, NNI  
+**Quantization:** GPTQ, AWQ, BitsAndBytes  
+**Distillation:** Hugging Face Transformers, TensorFlow Model Optimization  
+**Deployment:** LLaMA.cpp, TensorRT-LLM, Ollama  
+</div>
 
 ---
 
 ### **Why This Works** 🤔
-- **Order Matters:** Pruning before quantization avoids amplifying noise from redundant weights.
-- **Distillation After Compression:** Ensures the student model learns from a streamlined teacher.
-- **LoRA:** Allows task-specific adaptation without increasing model size.
+- ✅ **Order Matters:** Pruning before quantization avoids amplifying noise from redundant weights.
+- ✅ **Distillation After Compression:** Ensures the student model learns from a streamlined teacher.
+- ✅ **LoRA:** Allows task-specific adaptation without increasing model size.
+
 
