@@ -81,11 +81,11 @@ Combining the most effective techniques in an optimized sequence:
 
 ## Tools & Frameworks 🛠
 
-<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: #f9f9f9;">
-**Pruning:** SparseGPT, NNI  
-**Quantization:** GPTQ, AWQ, BitsAndBytes  
-**Distillation:** Hugging Face Transformers, TensorFlow Model Optimization  
-**Deployment:** LLaMA.cpp, TensorRT-LLM, Ollama  
+<div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
+  <strong>Pruning:</strong> SparseGPT, NNI  <br>
+  <strong>Quantization:</strong> GPTQ, AWQ, BitsAndBytes  <br>
+  <strong>Distillation:</strong> Hugging Face Transformers, TensorFlow Model Optimization  <br>
+  <strong>Deployment:</strong> LLaMA.cpp, TensorRT-LLM, Ollama
 </div>
 
 ---
