@@ -22,4 +22,4 @@
     * LoRA (Low-Rank Adaptation): Freeses most LLM weights and injects trainable low-rank matrics for efficient fine-tuning. combined with pruning (LoRAPrune), it enchances task-specific performance.
 
 
-# Step by step workflow to systematicaly create a smaller, high-performance model from an LLM, combining the most effective techniques in an optimized sequence.
+##  Step by step workflow to systematicaly create a smaller, high-performance model from an LLM, combining the most effective techniques in an optimized sequence.
